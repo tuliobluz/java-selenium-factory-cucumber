@@ -7,14 +7,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
-import Pages.FirstPage;
+import Pages.AccountPage;
 
-public class FirstFeature {
+public class AccountStep {
 
     BrowserClass sbc = BrowserClass.getInstanceOfSingletonBrowserClass();
     WebDriver driver = sbc.getDriver();
 
-    FirstPage firstPage;
+    AccountPage accountPage;
 
     @After
     public void tearDown(){
@@ -28,9 +28,9 @@ public class FirstFeature {
         String Title = driver.getTitle();
         System.out.println(Title);
 
-        firstPage = new FirstPage(driver);
+        accountPage = new AccountPage(driver);
 
-        firstPage.clickDiscover();
+        accountPage.clickDiscover();
     }
 
     @When("Hit Google on your browser")

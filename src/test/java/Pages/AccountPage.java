@@ -7,8 +7,8 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class FirstPage {
-    public FirstPage(WebDriver driver) {
+public class AccountPage {
+    public AccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
