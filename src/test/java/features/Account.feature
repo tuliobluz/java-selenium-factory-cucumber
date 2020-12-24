@@ -13,6 +13,6 @@ Feature: User account
 
   Scenario: Reset password
     When The user goes to forgot password
-    And The user fills the field
+    And The user fills the reset field
     And The user submits
     Then The user should see the reset password message

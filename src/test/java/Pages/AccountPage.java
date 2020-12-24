@@ -30,6 +30,9 @@ public class AccountPage {
     @FindBy(className = "tw-text-primary")
     WebElement welcomeMsg;
 
+    @FindBy(className = "css-6812jg")
+    public WebElement resetMsg;
+
     @FindBy(className = "css-17u1wwn")
     WebElement forgotPassword;
 
@@ -59,5 +62,10 @@ public class AccountPage {
     public String getWelcomeMsg(){
         String welcomeText = welcomeMsg.getText();
         return welcomeText;
+    }
+
+    public String getResetMsg(){
+        String resetText = resetMsg.getText();
+        return resetText;
     }
 }
