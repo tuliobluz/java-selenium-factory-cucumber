@@ -16,7 +16,7 @@ public class BrowserClass {
     private BrowserClass() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     // TO create instance of class

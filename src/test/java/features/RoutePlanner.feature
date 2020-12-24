@@ -12,13 +12,15 @@ Feature: Route Planner
     Then The user should see the list of options
 
   Scenario: Edit a route
-    Given The user has already planned the route
+    Given The user fills the start point and the end point
+    And The user submits the plan
     When The user changes the destination
     And The user submits the plan
-    Then The user should see the list of options updated
+    Then The user should see the list of options
 
   Scenario: Added a new destination
-    Given The user has already planned the route
+    Given The user fills the start point and the end point
+    And The user submits the plan
     When The user adds a new destination
     And The user submits the plan
-    Then The user should see the list of options updated
+    Then The user should see the list of options

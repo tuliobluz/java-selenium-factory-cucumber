@@ -15,7 +15,7 @@ import Utils.BrowserClass;
 
 public class AccountStep {
 
-    String BASE_URL = "https://www.komoot.com/";
+    String BASE_URL = "https://www.komoot.com";
     String REGISTER_URL = "https://account.komoot.com";
     String EXPECTED_WELCOME = "Welcome | Komoot";
     String EXPECTED_WELCMSG = "HershelHerzog, your next adventure starts now!";
@@ -32,11 +32,6 @@ public class AccountStep {
     String firstName = faker.name().firstName();
     String lastName = faker.name().lastName();
     String email = firstName + lastName + "_STAGE@gmail.com";
-
-    @AfterSuite
-    public void tearDown(){
-        driver.close();
-    }
 
     @Given("The user is on the register page")
     public void the_user_is_on_the_register_page() {

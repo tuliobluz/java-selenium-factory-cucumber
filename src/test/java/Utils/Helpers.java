@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Helpers {
 
-    int TIMEOUT = 30;
+    int TIMEOUT = 15;
 
     public void waitTextToBePreset(WebElement element, String text, WebDriver driver){
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
