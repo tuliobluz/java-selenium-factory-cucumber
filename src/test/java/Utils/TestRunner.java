@@ -9,7 +9,7 @@ import org.testng.annotations.AfterClass;
 import Utils.BrowserClass;
 
 @CucumberOptions(
-        features = {"src/test/features"},
+        features = {"src/test/java/features"},
         glue = {"StepDefinitions"},
         tags = ""
 )
