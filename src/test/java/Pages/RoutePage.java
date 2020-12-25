@@ -16,7 +16,7 @@ public class RoutePage {
     }
 
     @FindBy(xpath = "//div[@data-position=0]/div/a")
-    WebElement startPoint;
+    public WebElement startPoint;
 
     @FindBy(xpath = "//div[@data-position=1]/div/a")
     WebElement destination;
@@ -32,6 +32,9 @@ public class RoutePage {
 
     @FindBy(className = "icon-waypoint-add")
     WebElement iconAdd;
+
+    @FindBy(className = "mapboxgl-canvas")
+    public WebElement map;
 
     public void clickStartPoint(){
         startPoint.click();

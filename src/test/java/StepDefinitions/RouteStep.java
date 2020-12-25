@@ -1,6 +1,5 @@
 package StepDefinitions;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,7 +10,6 @@ import Pages.RoutePage;
 import Utils.Helpers;
 import Utils.BrowserClass;
 import Utils.ConfigFileReader;
-import org.testng.annotations.AfterTest;
 
 public class RouteStep {
 
@@ -26,12 +24,6 @@ public class RouteStep {
     RoutePage routePage;
     Helpers helpers = new Helpers();
 
-    @After
-    public void afterScenario()
-    {
-        driver.quit();
-    }
-
     @Given("The user is on the Route Planner Page")
     public void the_user_is_on_the_route_planner_page() {
         configFileReader= new ConfigFileReader();
@@ -41,9 +33,10 @@ public class RouteStep {
     @Given("The user fills the start point and the end point")
     public void the_user_fills_the_start_point_and_the_end_point() throws InterruptedException {
         routePage = new RoutePage(driver);
-        Thread.sleep(6000);
+        helpers.waitElementToBePreset(routePage.map, driver);
         routePage.clickStartPoint();
         routePage.fillPlace(STARTPOINT);
+        helpers.waitElementToBePreset(routePage.result, driver);
         routePage.clickResult();
 
         routePage.clickDestination();
@@ -53,6 +46,7 @@ public class RouteStep {
     @When("The user submits the plan")
     public void the_user_submits_the_plan() {
         routePage = new RoutePage(driver);
+        helpers.waitElementToBePreset(routePage.result, driver);
         routePage.clickResult();
     }
 
