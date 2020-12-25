@@ -1,22 +1,21 @@
 package StepDefinitions;
 
-import Pages.AccountPage;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.openqa.selenium.WebDriver;
 
-import com.github.javafaker.Faker;
+import org.openqa.selenium.WebDriver;
 
 import Pages.RoutePage;
 import Utils.Helpers;
 import Utils.BrowserClass;
+import Utils.ConfigFileReader;
+import org.testng.annotations.AfterTest;
 
 public class RouteStep {
 
-    String BASE_URL = "https://www.komoot.com";
+    ConfigFileReader configFileReader;
     String STARTPOINT = "Berlin";
     String DESTINATION_B = "Potsdam";
     String DESTINATION_C = "Michendorf";
@@ -25,12 +24,18 @@ public class RouteStep {
     WebDriver driver = sbc.getDriver();
 
     RoutePage routePage;
-    Faker faker = new Faker();
     Helpers helpers = new Helpers();
+
+    @After
+    public void afterScenario()
+    {
+        driver.quit();
+    }
 
     @Given("The user is on the Route Planner Page")
     public void the_user_is_on_the_route_planner_page() {
-        driver.get(BASE_URL + "/plan");
+        configFileReader= new ConfigFileReader();
+        driver.get(configFileReader.getAttributes("BASE_URL") + "/plan");
     }
 
     @Given("The user fills the start point and the end point")

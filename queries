@@ -1,0 +1,24 @@
+1
+SELECT * , MAX (Salary) AS HighestSalary
+FROM Employee
+2
+SELECT MAX (Salary) AS HighestSalary
+FROM Employee
+3
+SELECT MAX(Salary) AS SecondHighSalary
+  FROM Employee
+ WHERE Salary < (SELECT MAX(Salary)
+                 FROM Employee);
+4
+SELECT * FROM Employee
+WHERE emp_id BETWEEN 10003 AND 10006;
+5
+SELECT E.first_name, E.last_name, D.department_name, MAX(E.salary) as HighestSalary
+FROM Employee E
+    INNER JOIN Department D
+    ON D.department_id = E.department_id;
+6
+SELECT MAX(E.Salary), E.first_name, E.last_name, D.DepartmentName
+FROM Employee E
+    INNER JOIN Department D ON D.department_id = E.department_id
+GROUP BY DepartmentName

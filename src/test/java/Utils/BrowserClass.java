@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserClass {
+    ConfigFileReader configFileReader;
 
     // instance of singleton class
     private static BrowserClass instanceOfBrowserClass = null;
@@ -14,9 +15,10 @@ public class BrowserClass {
 
     // Constructor
     private BrowserClass() {
+        configFileReader= new ConfigFileReader();
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
     }
 
     // TO create instance of class

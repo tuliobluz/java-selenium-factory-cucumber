@@ -1,10 +1,11 @@
 package StepDefinitions;
 
+import Utils.ConfigFileReader;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
 import org.openqa.selenium.WebDriver;
 
 import com.github.javafaker.Faker;
@@ -14,13 +15,11 @@ import Utils.Helpers;
 import Utils.BrowserClass;
 
 public class AccountStep {
+    ConfigFileReader configFileReader;
 
-    String BASE_URL = "https://www.komoot.com";
-    String REGISTER_URL = "https://account.komoot.com";
     String EXPECTED_WELCOME = "Welcome | Komoot";
     String EXPECTED_WELCMSG = "HershelHerzog, your next adventure starts now!";
     String EXPECTED_RESETMSG = "Your Password Has Been Reset";
-    String registeredEmail = "HershelHerzog_STAGE@gmail.com";
 
     BrowserClass sbc = BrowserClass.getInstanceOfSingletonBrowserClass();
     WebDriver driver = sbc.getDriver();
@@ -35,13 +34,12 @@ public class AccountStep {
 
     @Given("The user is on the register page")
     public void the_user_is_on_the_register_page() {
-        driver.get(REGISTER_URL + "/signin");
+        configFileReader= new ConfigFileReader();
+        driver.get(configFileReader.getAttributes("REGISTER_URL") + "/signin");
     }
 
     @When("The user fills the field")
     public void the_user_fills_the_field() {
-        System.out.println(email);
-
         accountPage = new AccountPage(driver);
         accountPage.fillEmail(email);
         accountPage.submitButton();
@@ -59,7 +57,8 @@ public class AccountStep {
     @When("The user goes to forgot password")
     public void the_user_goes_to_forgot_password() {
         accountPage = new AccountPage(driver);
-        accountPage.fillEmail(registeredEmail);
+        configFileReader= new ConfigFileReader();
+        accountPage.fillEmail(configFileReader.getAttributes("REGISTERED_USER"));
         accountPage.submitButton();
         accountPage.clickForgotPassword();
     }
@@ -67,18 +66,20 @@ public class AccountStep {
     @When("The user fills the reset field")
     public void the_user_fills_the_reset_field() {
         accountPage = new AccountPage(driver);
-        accountPage.fillEmail(registeredEmail);
+        configFileReader= new ConfigFileReader();
+        accountPage.fillEmail(configFileReader.getAttributes("REGISTERED_USER"));
     }
 
     @Then("The user should see the welcome message")
     public void the_user_should_see_the_welcome_message() {
+        configFileReader= new ConfigFileReader();
         String title = driver.getTitle();
         String url = driver.getCurrentUrl();
         accountPage = new AccountPage(driver);
         String welcomeMsg = accountPage.getWelcomeMsg();
 
         Assert.assertEquals(title, EXPECTED_WELCOME);
-        Assert.assertEquals(url, BASE_URL + "/onboarding/signup/intro");
+        Assert.assertEquals(url, configFileReader.getAttributes("BASE_URL") + "/onboarding/signup/intro");
         Assert.assertEquals(welcomeMsg, EXPECTED_WELCMSG);
     }
 
