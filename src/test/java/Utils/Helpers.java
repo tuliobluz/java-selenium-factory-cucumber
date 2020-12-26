@@ -6,7 +6,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Helpers {
-
     int TIMEOUT = 15;
 
     public void waitTextToBePreset(WebElement element, String text, WebDriver driver){

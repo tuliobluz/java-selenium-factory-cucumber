@@ -11,19 +11,18 @@ import Utils.Helpers;
 import Utils.ConfigFileReader;
 
 public class RouteStep {
-
+    RoutePage routePage;
     ConfigFileReader configFileReader;
-    String STARTPOINT = "Berlin";
-    String DESTINATION_B = "Potsdam";
-    String DESTINATION_C = "Michendorf";
-
+    Helpers helpers = new Helpers();
     public WebDriver driver;
+
     public RouteStep() {
         driver = Hooks.driver;
     }
 
-    RoutePage routePage;
-    Helpers helpers = new Helpers();
+    String STARTPOINT = "Berlin";
+    String DESTINATION_B = "Potsdam";
+    String DESTINATION_C = "Michendorf";
 
     @Given("The user is on the Route Planner Page")
     public void the_user_is_on_the_route_planner_page() {
@@ -48,6 +47,7 @@ public class RouteStep {
 
     @When("The user submits the plan")
     public void the_user_submits_the_plan() {
+
         routePage = new RoutePage(driver);
         helpers.waitElementToBePreset(routePage.result, driver);
         routePage.clickResult();
@@ -55,14 +55,15 @@ public class RouteStep {
 
     @When("The user changes the destination")
     public void the_user_changes_the_destination() {
-        routePage = new RoutePage(driver);
 
+        routePage = new RoutePage(driver);
         routePage.clickDestination();
         routePage.fillPlace(DESTINATION_C);
     }
 
     @When("The user adds a new destination")
     public void the_user_adds_a_new_destination() {
+
         routePage = new RoutePage(driver);
         routePage.addDestination();
         routePage.fillPlace(DESTINATION_C);
@@ -70,6 +71,7 @@ public class RouteStep {
 
     @Then("The user should see the list of options")
     public void the_user_should_see_the_list_of_options() {
+
         routePage = new RoutePage(driver);
         helpers.waitElementToBePreset(routePage.listResult, driver);
     }

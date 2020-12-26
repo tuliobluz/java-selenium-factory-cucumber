@@ -14,25 +14,22 @@ import Utils.Helpers;
 import Utils.ConfigFileReader;
 
 public class AccountStep {
-
     ConfigFileReader configFileReader;
+    AccountPage accountPage;
+    Faker faker = new Faker();
+    Helpers helpers = new Helpers();
+    public WebDriver driver;
+
+    public AccountStep() {
+        driver = Hooks.driver;
+    }
 
     String EXPECTED_WELCOME = "Welcome | Komoot";
     String EXPECTED_WELCMSG = "HershelHerzog, your next adventure starts now!";
     String EXPECTED_RESETMSG = "Your Password Has Been Reset";
-
-    AccountPage accountPage;
-    Faker faker = new Faker();
-    Helpers helpers = new Helpers();
-
     String firstName = faker.name().firstName();
     String lastName = faker.name().lastName();
     String email = firstName + lastName + "_STAGE@gmail.com";
-
-    public WebDriver driver;
-    public AccountStep() {
-        driver = Hooks.driver;
-    }
 
     @Given("The user is on the register page")
     public void the_user_is_on_the_register_page() {
@@ -75,9 +72,9 @@ public class AccountStep {
     @Then("The user should see the welcome message")
     public void the_user_should_see_the_welcome_message() {
         configFileReader= new ConfigFileReader();
+        accountPage = new AccountPage(driver);
         String title = driver.getTitle();
         String url = driver.getCurrentUrl();
-        accountPage = new AccountPage(driver);
         String welcomeMsg = accountPage.getWelcomeMsg();
 
         Assert.assertEquals(title, EXPECTED_WELCOME);
