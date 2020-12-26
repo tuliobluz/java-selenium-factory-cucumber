@@ -1,9 +1,9 @@
 package StepDefinitions;
 
-import Utils.ConfigFileReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import org.testng.Assert;
 import org.openqa.selenium.WebDriver;
 
@@ -12,6 +12,7 @@ import com.github.javafaker.Faker;
 import Pages.AccountPage;
 import Utils.Helpers;
 import Utils.BrowserClass;
+import Utils.ConfigFileReader;
 
 public class AccountStep {
     ConfigFileReader configFileReader;

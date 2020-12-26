@@ -42,11 +42,11 @@ I used the technologies below:
 - [Donwload](https://chromedriver.storage.googleapis.com/index.html) the driver to your OS
 - Unpack the driver in this folder ```src/test/resources```
 
-- If you are using Windows, you should change the ```line 17``` on the file```/javaAutomation/src/test/java/Utils/SingletonBrowserClass.java```
+- If you are using Windows, you should change the ```line 19``` on the file```src/test/java/Utils/BrowserClass.java```
 
 System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
 
 ## Running tests
 
 - Run ```mvn test``` test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
-    It will be generated a report that can access by the link on the terminal after run all tests.
+It will be generated a report that can access by the link on the terminal after run all tests.

@@ -7,12 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 public class BrowserClass {
     ConfigFileReader configFileReader;
-
     // instance of singleton class
     private static BrowserClass instanceOfBrowserClass = null;
 
     private WebDriver driver;
-
     // Constructor
     private BrowserClass() {
         configFileReader= new ConfigFileReader();
@@ -20,7 +18,6 @@ public class BrowserClass {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
     }
-
     // TO create instance of class
     public static BrowserClass getInstanceOfSingletonBrowserClass() {
         if (instanceOfBrowserClass == null) {
@@ -28,11 +25,8 @@ public class BrowserClass {
         }
         return instanceOfBrowserClass;
     }
-
     // To get driver
     public WebDriver getDriver() {
         return driver;
     }
-
-
 }
