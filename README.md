@@ -22,7 +22,6 @@ I used the technologies below:
     * ```Utils ``` Where the helpers can be created and classes methods to reuse.
         * ``` Helpers ``` This class is responsible to create methods to reuse, waits and etc.
         * ``` ConfigFileReader ``` This class is responsible to read the config.properties.
-        * ``` BrowserClass ``` This class is responsible to create the unique instance of the browser
         * ``` TestRunner ```
 * ``` test/resources ``` It is responsible to keep the drivers and properties files.
 
