@@ -11,18 +11,15 @@ import com.github.javafaker.Faker;
 
 import Pages.AccountPage;
 import Utils.Helpers;
-import Utils.BrowserClass;
 import Utils.ConfigFileReader;
 
 public class AccountStep {
+
     ConfigFileReader configFileReader;
 
     String EXPECTED_WELCOME = "Welcome | Komoot";
     String EXPECTED_WELCMSG = "HershelHerzog, your next adventure starts now!";
     String EXPECTED_RESETMSG = "Your Password Has Been Reset";
-
-    BrowserClass sbc = BrowserClass.getInstanceOfSingletonBrowserClass();
-    WebDriver driver = sbc.getDriver();
 
     AccountPage accountPage;
     Faker faker = new Faker();
@@ -32,9 +29,14 @@ public class AccountStep {
     String lastName = faker.name().lastName();
     String email = firstName + lastName + "_STAGE@gmail.com";
 
+    public WebDriver driver;
+    public AccountStep() {
+        driver = Hooks.driver;
+    }
+
     @Given("The user is on the register page")
     public void the_user_is_on_the_register_page() {
-        configFileReader= new ConfigFileReader();
+        ConfigFileReader configFileReader = new ConfigFileReader();
         driver.get(configFileReader.getAttributes("REGISTER_URL") + "/signin");
     }
 

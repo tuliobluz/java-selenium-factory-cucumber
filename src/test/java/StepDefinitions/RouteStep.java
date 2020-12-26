@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 import Pages.RoutePage;
 import Utils.Helpers;
-import Utils.BrowserClass;
 import Utils.ConfigFileReader;
 
 public class RouteStep {
@@ -18,20 +17,24 @@ public class RouteStep {
     String DESTINATION_B = "Potsdam";
     String DESTINATION_C = "Michendorf";
 
-    BrowserClass sbc = BrowserClass.getInstanceOfSingletonBrowserClass();
-    WebDriver driver = sbc.getDriver();
+    public WebDriver driver;
+    public RouteStep() {
+        driver = Hooks.driver;
+    }
 
     RoutePage routePage;
     Helpers helpers = new Helpers();
 
     @Given("The user is on the Route Planner Page")
     public void the_user_is_on_the_route_planner_page() {
+
         configFileReader= new ConfigFileReader();
         driver.get(configFileReader.getAttributes("BASE_URL") + "/plan");
     }
 
     @Given("The user fills the start point and the end point")
-    public void the_user_fills_the_start_point_and_the_end_point() throws InterruptedException {
+    public void the_user_fills_the_start_point_and_the_end_point() {
+
         routePage = new RoutePage(driver);
         helpers.waitElementToBePreset(routePage.map, driver);
         routePage.clickStartPoint();

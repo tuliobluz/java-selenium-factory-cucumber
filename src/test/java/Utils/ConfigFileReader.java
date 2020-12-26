@@ -28,12 +28,6 @@ public class ConfigFileReader {
         }
     }
 
-    public String getDriverPath(){
-        String driverPath = properties.getProperty("driverPath");
-        if(driverPath!= null) return driverPath;
-        else throw new RuntimeException("driverPath not specified in the Configuration.properties file.");
-    }
-
     public long getImplicitlyWait() {
         String implicitlyWait = properties.getProperty("implicitlyWait");
         if(implicitlyWait != null) return Long.parseLong(implicitlyWait);
