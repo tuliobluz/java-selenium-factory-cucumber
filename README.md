@@ -18,6 +18,7 @@ I used the technologies below:
     * ```Pages ``` Where the page object of tests should be created
         * ``` AccountPage ```
     * ```StepDefinitions``` Where the specification of tests should be created
+        * ``` Hooks ```  Run before or after each scenario
         * ``` AccountStep ```
     * ```Utils ``` Where the helpers can be created and classes methods to reuse.
         * ``` Helpers ``` This class is responsible to create methods to reuse, waits and etc.
@@ -41,7 +42,7 @@ I used the technologies below:
 - [Donwload](https://chromedriver.storage.googleapis.com/index.html) the driver to your OS
 - Unpack the driver in this folder ```src/test/resources```
 
-- If you are using Windows, you should change the ```line 19``` on the file```src/test/java/Utils/Hooks.java```
+- If you are using Windows, you should change the ```line 19``` on the file```src/test/java/StepDefinitions/Hooks.java```
 
 System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
 
